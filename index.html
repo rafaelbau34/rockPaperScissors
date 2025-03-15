@@ -8,6 +8,11 @@
       body {
         text-align: center;
       }
+
+      #restart {
+        margin: auto;
+        margin-top: 5px;
+      }
     </style>
   </head>
   <body>
@@ -23,7 +28,9 @@
       <button onclick="playRound('scissors')">Scissors</button>
     </div>
 
-    <button id="restart" onclick="resetGame()">Restart Game</button>
+    <button id="restart" onclick="resetGame()" style="display: none">
+      Restart Game
+    </button>
 
     <script>
       let humanScore = 0;
@@ -65,12 +72,14 @@
       }
 
       function endGame() {
-        let finalMessage =
-          humanScore > computerScore
-            ? "you win!"
-            : humanScore < computerScore
-            ? "you lost!"
-            : "it's a tie!";
+        let finalMessage = "";
+        if (humanScore > computerScore) {
+          finalMessage = "Congratulations, you won!";
+        } else if (humanScore < computerScore) {
+          finalMessage = "You lost, you're a loser";
+        } else {
+          finalMessage = "It's a tie!";
+        }
 
         document.getElementById("result").textContent = finalMessage;
         document.getElementById("restart").style.display = "block";
@@ -83,8 +92,8 @@
 
         document.getElementById("humanScore").textContent = "0";
         document.getElementById("computerScore").textContent = "0";
-        document.getElementById("result").textContent = "Make your choice";
-        document.getElementById("restart").style.display = none;
+        document.getElementById("result").textContent = "Make your choice!";
+        document.getElementById("restart").style.display = "none";
       }
     </script>
   </body>
